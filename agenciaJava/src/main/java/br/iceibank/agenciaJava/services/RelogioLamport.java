@@ -1,0 +1,23 @@
+package br.iceibank.agenciaJava.services;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class RelogioLamport {
+    private int contador = 0;
+
+    public synchronized int eventoLocal() {
+        contador += 1;
+        return contador;
+    }
+
+    public synchronized int aoEnviar() {
+        contador += 1;
+        return contador;
+    }
+
+    public synchronized int aoReceber(int timestampRecebido) {
+        contador = Math.max(contador, timestampRecebido) + 1;
+        return contador;
+    }
+}

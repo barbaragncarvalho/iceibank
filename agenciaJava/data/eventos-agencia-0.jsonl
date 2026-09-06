@@ -1,0 +1,4 @@
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-06T20:23:43.599658300Z","detalhes":{"nomeAluno":"Ana","id":0,"saldoInicial":100.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":5,"horaParede":"2026-09-06T20:26:27.318095900Z","detalhes":{"idConta":0,"valor":10.0,"origemAgencia":1}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":6,"horaParede":"2026-09-06T20:30:54.451307600Z","detalhes":{"idOrigem":0,"valor":5.0,"idDestino":1}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_FALHOU","timestampLamport":8,"horaParede":"2026-09-06T20:30:54.553196600Z","detalhes":{"erro":"I/O error on POST request for \"http://localhost:4048/contas/1/creditar-remoto\": Connection refused: connect","idOrigem":0,"idDestino":1,"valor":5.0}}

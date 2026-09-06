@@ -1,0 +1,5 @@
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-06T20:24:18.411418500Z","detalhes":{"saldoInicial":250.0,"nomeAluno":"Beto","id":1}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":2,"horaParede":"2026-09-06T20:24:45.525804100Z","detalhes":{"saldoInicial":300.0,"nomeAluno":"Paloma","id":4}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":3,"horaParede":"2026-09-06T20:26:27.183296200Z","detalhes":{"idOrigem":1,"valor":10.0,"idDestino":0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":5,"horaParede":"2026-09-06T20:27:15.991789800Z","detalhes":{"idOrigem":4,"valor":50.0,"idDestino":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO","timestampLamport":6,"horaParede":"2026-09-06T20:27:15.991789800Z","detalhes":{"idOrigem":4,"valor":50.0,"idDestino":1}}
