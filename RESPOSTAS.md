@@ -17,3 +17,14 @@
 
 - usar o padrão SAGA, em que a transferência é dividida em etapas locais independentes. Assim, a agência de origem debita o valor da conta e tenta chamar o crédito na agência de destino. Caso a chamada para o destino falhe ou demore demais, a própria agência de origem cancela a operação realizando o rollback, devolvendo o dinheiro e restaurando a consistência.
 
+## Parte E
+
+### 10.2
+
+1. Foi encontrado eventos com mesmo valor de timestampLamport, como o criar conta na agência 0 e 1, que possuem o timestampLamport igual a 1. Esses dois eventos de mesmo tempo são concorrentes, pois não existe nenhuma dependência entre a criação da conta na Agência 0 e a criação da conta na Agência 1, já que uma ação não causou nem foi influenciada pela outra. Além disso, analisando a hora parede de cada evento, dá para perceber que os eventos de mesmo dia estão ordenados pelo de menor hora ao de maior, o que bate com a ordem de Lamport. E também, eventos que ocorreram em horários do mundo real diferente (criou-se uma conta na agência 0 às 19:59 e na agência 1 às 20:00) ficaram com o mesmo horário no relógio de lamport. Isso evidencia que o relógio de Lamport não mede passagem de tempo real, mas apenas o ordenamento causal de operações em cada processo. Assim, como estes 2 processos não são dependentes, assume-se que são concorrentes.
+
+### 10.3 
+
+1. Isso significa que se um evento A tem o timestamp menor que o de B, ou o de A causou o evento B, ou eles são eventos que não dependem um do outro e que o relógio de B somente avançou o seu tempo local mais rápido, por ter ocorrido mais operações. Com isso, nem sempre é possível afirmar que houve relação causal entre 2 eventos com timestamp diferentes, como é o caso do evento de criar conta na agência 1 no timestamp 2 e realizar transferência (débito) entre contas no timestamp 3, que são eventos totalmente independentes.
+
+2. O relógio de Lamport, sozinho, não seria suficiente para um sistema que precisa distinguir eventos causais e independentes. Isso motiva o uso do relógio vetorial, porque ele armazena um vetor de contadores, em que cada posição representa uma agência, permitindo comparar posição a posição e determinar com certeza se dois eventos possuem relação causal ou se são eventos concorrentes.
