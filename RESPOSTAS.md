@@ -1,5 +1,9 @@
 # ICEIBank
 
+## 2.1 Funcionalidade adicional: Limite de Saque
+
+Foi escolhida esta regra de negócio que define o limite do saque como R$1.000,00, porque, em sistemas bancários reais, normalmente se há limites de movimentações, por questões de segurança.
+
 ## Parte B
 
 1. O relógio de Lamport usa `max(contador_local, timestampRecebido) + 1` ao receber uma mensagem em vez de simplesmente adotar o timestamp recebido, porque assim se garante que haja a relação de causa e efeito, em que o evento de receber mensagem sempre terá um horário maior que o horário do evento que enviou a mensagem. Além disso, isso evita que o relógio não volte no tempo, já que a agência que recebeu a mensagem pode ter realizado operações localmente e estar com o horário maior do que quem enviou. Então, implementado dessa forma, garante que sempre pegará o horário maior.

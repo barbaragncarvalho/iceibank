@@ -85,6 +85,11 @@ public class ContaController {
         }
 
         double valor = payload.get("valor");
+        if (valor > 1000) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("erro", "Operação cancelada. O valor máximo permitido por saque é de R$ 1.000,00."));
+        }
+
         if (conta.getSaldoInicial() < valor) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("erro", "Saldo insuficiente."));
