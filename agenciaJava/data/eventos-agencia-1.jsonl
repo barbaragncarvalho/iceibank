@@ -15,3 +15,6 @@
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":10,"horaParede":"2026-09-07T18:22:05.957626700Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":20.0}}
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":12,"horaParede":"2026-09-07T18:22:20.472035800Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":10.0}}
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":14,"horaParede":"2026-09-07T18:38:33.275448Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":10.0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":15,"horaParede":"2026-09-07T18:47:48.047862100Z","detalhes":{"idDestino":0,"idOrigem":1,"valor":10.0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":20,"horaParede":"2026-09-07T18:48:09.776591300Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":10.0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":22,"horaParede":"2026-09-07T18:50:57.287657800Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":1.0}}
