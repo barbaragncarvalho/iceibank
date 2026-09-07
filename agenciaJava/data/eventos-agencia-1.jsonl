@@ -12,3 +12,6 @@
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":4,"horaParede":"2026-09-07T17:19:16.771814800Z","detalhes":{"valor":10.0,"origemAgencia":0,"idConta":1}}
 {"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T17:36:57.591676600Z","detalhes":{"nomeAluno":"carlos","id":1,"saldoInicial":45.0}}
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":6,"horaParede":"2026-09-07T17:39:35.711132100Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":6.0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":10,"horaParede":"2026-09-07T18:22:05.957626700Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":20.0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":12,"horaParede":"2026-09-07T18:22:20.472035800Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":10.0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":14,"horaParede":"2026-09-07T18:38:33.275448Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":10.0}}

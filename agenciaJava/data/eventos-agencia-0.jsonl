@@ -33,3 +33,6 @@
 {"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":4,"horaParede":"2026-09-07T17:39:35.637537900Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":6.0}}
 {"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":6,"horaParede":"2026-09-07T17:40:09.174899600Z","detalhes":{"idDestino":0,"idOrigem":3,"valor":10.0}}
 {"agencia":"agencia-0","tipo":"TRANSFERENCIA_CREDITO","timestampLamport":7,"horaParede":"2026-09-07T17:40:09.175939700Z","detalhes":{"idDestino":0,"idOrigem":3,"valor":10.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":8,"horaParede":"2026-09-07T18:22:05.931885400Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":20.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":10,"horaParede":"2026-09-07T18:22:20.463015400Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":10.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":12,"horaParede":"2026-09-07T18:38:33.257244900Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":10.0}}
