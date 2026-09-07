@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ICEIBank - Abertura de Conta</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Login</a>
+        <a href="criar-conta.html" class="active">Nova Conta</a>
+        <a href="saldo.html">Saldo</a>
+        <a href="operacoes.html">Operações</a>
+        <a href="transferencias.html">Transferência</a>
+    </nav>
+
+    <div class="card">
+        <div class="brand-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="ICEIBank Logo">
+            <h2>Abertura de Conta</h2>
+            <p>Cadastre seu acesso e abra sua conta</p>
+        </div>
+
+        <form id="form-criar-conta" onsubmit="return false;">
+            <div class="form-group">
+                <label for="agencia">Agência:</label>
+                <select id="agencia">
+                    <option value="http://localhost:4047">Agência 0 (Porta 4047)</option>
+                    <option value="http://localhost:4048">Agência 1 (Porta 4048)</option>
+                    <option value="http://localhost:4049">Agência 2 (Porta 4049)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="usuario">Nome de Usuário (Acesso):</label>
+                <input type="text" id="usuario" placeholder="Usuário" required>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha de Acesso:</label>
+                <input type="password" id="senha" placeholder="Crie uma senha" required>
+            </div>
+
+            <div class="form-group">
+                <label for="conta-id">Número da Conta (ID):</label>
+                <input type="number" id="conta-id" placeholder="Ex: 0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nome-aluno">Nome do Titular:</label>
+                <input type="text" id="nome-aluno" placeholder="Nome completo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="saldo-inicial">Depósito Inicial (R$):</label>
+                <input type="number" id="saldo-inicial" step="0.01" min="0" placeholder="100.00" required>
+            </div>
+
+            <button type="button" id="btn-criar">Criar Conta</button>
+        </form>
+
+        <div id="mensagem" class="alerta"></div>
+    </div>
+
+    <script type="module" src="js/criar-conta.js"></script>
+</body>
+
+</html>

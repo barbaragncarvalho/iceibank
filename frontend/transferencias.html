@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ICEIBank - Transferências</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="saldo.html">Saldo</a>
+        <a href="operacoes.html">Operações</a>
+        <a href="transferencias.html" class="active">Transferência</a>
+        <a href="criar-conta.html">Nova Conta</a>
+        <a href="#" id="btn-sair">Sair</a>
+    </nav>
+
+    <div class="card">
+        <div class="brand-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="ICEIBank Logo">
+            <h2>Transferência de Fundos</h2>
+            <p>Transferências locais e entre agências</p>
+        </div>
+
+        <form id="form-transferencia">
+            <div class="form-group">
+                <label for="id-origem">Conta de Origem:</label>
+                <input type="number" id="id-origem" placeholder="Ex: 0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="id-destino">Conta de Destino:</label>
+                <input type="number" id="id-destino" placeholder="Ex: 1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor a Transferir (R$):</label>
+                <input type="number" id="valor" step="0.01" min="0.01" placeholder="0.00" required>
+            </div>
+
+            <button type="submit">Realizar Transferência</button>
+        </form>
+
+        <div id="mensagem" class="alerta"></div>
+    </div>
+    <script type="module" src="js/transferencias.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ICEIBank - Operações</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="saldo.html">Saldo</a>
+        <a href="operacoes.html" class="active">Operações</a>
+        <a href="transferencias.html">Transferência</a>
+        <a href="criar-conta.html">Nova Conta</a>
+        <a href="#" id="btn-sair">Sair</a>
+    </nav>
+
+    <div class="card">
+        <div class="brand-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="ICEIBank Logo">
+            <h2>Depósito e Saque</h2>
+            <p>Movimente saldo com validação de limite</p>
+        </div>
+
+        <form id="form-operacao">
+            <div class="form-group">
+                <label for="conta-id">Número da Conta:</label>
+                <input type="number" id="conta-id" placeholder="Ex: 0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo-operacao">Operação:</label>
+                <select id="tipo-operacao">
+                    <option value="depositar">Depósito</option>
+                    <option value="sacar">Saque (Limite de R$ 1.000,00)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor (R$):</label>
+                <input type="number" id="valor" step="0.01" min="0.01" placeholder="0.00" required>
+            </div>
+
+            <button type="submit">Efetivar Operação</button>
+        </form>
+
+        <div id="mensagem" class="alerta"></div>
+    </div>
+    <script type="module" src="js/operacoes.js"></script>
+</body>
+
+</html>

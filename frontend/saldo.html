@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ICEIBank - Saldo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="saldo.html" class="active">Saldo</a>
+        <a href="operacoes.html">Operações</a>
+        <a href="transferencias.html">Transferência</a>
+        <a href="criar-conta.html">Nova Conta</a>
+        <a href="#" id="btn-sair">Sair</a>
+    </nav>
+
+    <div class="card">
+        <div class="brand-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="ICEIBank Logo">
+            <h2>Consulta de Saldo</h2>
+            <p>Consulte os dados da sua conta na agência</p>
+        </div>
+
+        <form id="form-saldo">
+            <div class="form-group">
+                <label for="conta-id">Número da Conta:</label>
+                <input type="number" id="conta-id" placeholder="Ex: 0" required>
+            </div>
+            <button type="submit">Consultar Saldo</button>
+        </form>
+
+        <div id="mensagem" class="alerta"></div>
+    </div>
+    <script type="module" src="js/saldo.js"></script>
+</body>
+
+</html>

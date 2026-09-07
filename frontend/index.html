@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ICEIBank - Autenticação</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="brand-header">
+            <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="ICEIBank Logo">
+            <h2>ICEIBank</h2>
+            <p>Sistema Bancário Distribuído</p>
+        </div>
+
+        <form id="form-login">
+            <div class="form-group">
+                <label for="agencia">Agência de Acesso:</label>
+                <select id="agencia">
+                    <option value="http://localhost:4047">Agência 0 (Porta 4047)</option>
+                    <option value="http://localhost:4048">Agência 1 (Porta 4048)</option>
+                    <option value="http://localhost:4049">Agência 2 (Porta 4049)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" placeholder="Digite seu usuário" required>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" required>
+            </div>
+
+            <button type="submit">Acessar Conta</button>
+            <p style="text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-muted);">
+                Ainda não tem conta? <a href="criar-conta.html"
+                    style="color: var(--primary); font-weight: 600; text-decoration: none;">Abra sua conta aqui</a>
+            </p>
+        </form>
+
+        <div id="mensagem" class="alerta"></div>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+</body>
+
+</html>
