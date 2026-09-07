@@ -13,3 +13,23 @@
 {"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":3,"horaParede":"2026-09-07T14:33:42.812217800Z","detalhes":{"id":3,"nomeAluno":"Barbara","saldoInicial":2000.0}}
 {"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T14:35:40.181926400Z","detalhes":{"saldoInicial":2000.0,"id":3,"nomeAluno":"Barbara"}}
 {"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T14:37:58.819271500Z","detalhes":{"id":0,"nomeAluno":"Barbara","saldoInicial":2000.0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:14:15.894923600Z","detalhes":{"saldoInicial":2000.0,"id":0,"nomeAluno":"barbara c"}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:24:27.588448700Z","detalhes":{"saldoInicial":2000.0,"nomeAluno":"Barbara Carvalho","id":0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:26:20.987149800Z","detalhes":{"saldoInicial":2000.0,"id":0,"nomeAluno":"bárbara carvalho"}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:30:24.248085300Z","detalhes":{"saldoInicial":2000.0,"id":0,"nomeAluno":"Bárbara"}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:33:27.116787300Z","detalhes":{"nomeAluno":"Bárbara","id":0,"saldoInicial":2000.0}}
+{"agencia":"agencia-0","tipo":"DEPOSITO","timestampLamport":2,"horaParede":"2026-09-07T16:34:14.899916400Z","detalhes":{"id":0,"valor":10.0,"novoSaldo":2010.0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:47:04.445922400Z","detalhes":{"saldoInicial":1000.0,"id":0,"nomeAluno":"Carlos"}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:52:15.651240100Z","detalhes":{"id":0,"saldoInicial":200.0,"nomeAluno":"Carlos"}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:57:54.732369Z","detalhes":{"id":0,"saldoInicial":200.0,"nomeAluno":"carlos"}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T17:11:56.027401600Z","detalhes":{"saldoInicial":1000.0,"id":0,"nomeAluno":"abc"}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T17:17:42.702936900Z","detalhes":{"nomeAluno":"carlos","id":0,"saldoInicial":1000.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":2,"horaParede":"2026-09-07T17:19:16.711822Z","detalhes":{"valor":10.0,"idDestino":1,"idOrigem":0}}
+{"agencia":"agencia-0","tipo":"SAQUE","timestampLamport":4,"horaParede":"2026-09-07T17:20:23.785412500Z","detalhes":{"novoSaldo":978.0,"id":0,"valor":12.0}}
+{"agencia":"agencia-0","tipo":"DEPOSITO","timestampLamport":5,"horaParede":"2026-09-07T17:20:43.120238500Z","detalhes":{"novoSaldo":990.0,"id":0,"valor":12.0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T17:35:59.467930600Z","detalhes":{"nomeAluno":"barbara c","id":0,"saldoInicial":2000.0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampLamport":2,"horaParede":"2026-09-07T17:36:32.587169600Z","detalhes":{"nomeAluno":"lu nunes","id":3,"saldoInicial":300.0}}
+{"agencia":"agencia-0","tipo":"SAQUE","timestampLamport":3,"horaParede":"2026-09-07T17:38:28.930473800Z","detalhes":{"novoSaldo":1990.0,"id":0,"valor":10.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":4,"horaParede":"2026-09-07T17:39:35.637537900Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":6.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":6,"horaParede":"2026-09-07T17:40:09.174899600Z","detalhes":{"idDestino":0,"idOrigem":3,"valor":10.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_CREDITO","timestampLamport":7,"horaParede":"2026-09-07T17:40:09.175939700Z","detalhes":{"idDestino":0,"idOrigem":3,"valor":10.0}}

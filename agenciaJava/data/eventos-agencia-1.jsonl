@@ -3,3 +3,12 @@
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":3,"horaParede":"2026-09-06T20:26:27.183296200Z","detalhes":{"idOrigem":1,"valor":10.0,"idDestino":0}}
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":5,"horaParede":"2026-09-06T20:27:15.991789800Z","detalhes":{"idOrigem":4,"valor":50.0,"idDestino":1}}
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO","timestampLamport":6,"horaParede":"2026-09-06T20:27:15.991789800Z","detalhes":{"idOrigem":4,"valor":50.0,"idDestino":1}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:38:54.851363700Z","detalhes":{"saldoInicial":300.0,"id":1,"nomeAluno":"Luciana Nunes"}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:47:32.089473900Z","detalhes":{"id":1,"nomeAluno":"Luciana","saldoInicial":300.0}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:52:32.263021300Z","detalhes":{"saldoInicial":300.0,"id":1,"nomeAluno":"luciana"}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T16:58:13.742488400Z","detalhes":{"id":1,"nomeAluno":"luciana","saldoInicial":300.0}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T17:12:16.111560100Z","detalhes":{"id":1,"nomeAluno":"helen","saldoInicial":300.0}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T17:17:59.659339200Z","detalhes":{"id":1,"saldoInicial":300.0,"nomeAluno":"luciana"}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":4,"horaParede":"2026-09-07T17:19:16.771814800Z","detalhes":{"valor":10.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampLamport":1,"horaParede":"2026-09-07T17:36:57.591676600Z","detalhes":{"nomeAluno":"carlos","id":1,"saldoInicial":45.0}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":6,"horaParede":"2026-09-07T17:39:35.711132100Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":6.0}}

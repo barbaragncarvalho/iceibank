@@ -22,16 +22,21 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
 
         String authHeader = request.getHeader("Authorization");
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String token = authHeader.substring(7);
-            if (jwtService.validarToken(token)) {
-                return true;
-            }
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"erro\": \"Acesso não autorizado. Token ausente ou inválido.\"}");
+            return false;
         }
 
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.setContentType("application/json");
-        response.getWriter().write("{\"erro\": \"Acesso nao autorizado. Token ausente ou inválido.\"}");
-        return false;
+        String token = authHeader.substring(7);
+        if (!jwtService.validarToken(token)) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"erro\": \"Acesso não autorizado. Token ausente ou inválido.\"}");
+            return false;
+        }
+
+        return true;
     }
 }
