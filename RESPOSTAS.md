@@ -28,3 +28,12 @@
 1. Isso significa que se um evento A tem o timestamp menor que o de B, ou o de A causou o evento B, ou eles são eventos que não dependem um do outro e que o relógio de B somente avançou o seu tempo local mais rápido, por ter ocorrido mais operações. Com isso, nem sempre é possível afirmar que houve relação causal entre 2 eventos com timestamp diferentes, como é o caso do evento de criar conta na agência 1 no timestamp 2 e realizar transferência (débito) entre contas no timestamp 3, que são eventos totalmente independentes.
 
 2. O relógio de Lamport, sozinho, não seria suficiente para um sistema que precisa distinguir eventos causais e independentes. Isso motiva o uso do relógio vetorial, porque ele armazena um vetor de contadores, em que cada posição representa uma agência, permitindo comparar posição a posição e determinar com certeza se dois eventos possuem relação causal ou se são eventos concorrentes.
+
+
+## Parte F
+
+### 11.1
+
+• Para a Sprint 1 eu escolhi o formato das credenciais sendo usuário e senha, pois este é um formato mais simples e usado na maioria dos aplicativos. Além de que, com este modelo, o usuário não fica limitado ao acesso de somente uma conta bancária por vez (como no modelo conta e senha), podendo teoricamente acessar todas as contas que ele possui.
+
+• A chamada entre agências (creditar-remoto), por ser interna, não precisa de estar protegida, considerando que ela só é feita pelos servidores de cada agência entre si e não diretamente pelo usuário. Além de que, para que o usuário consiga fazer uma transferência, ele deve ter criado sua conta que, por sua vez, exige que ele esteja logado. Assim, a autenticação já é garantida.
