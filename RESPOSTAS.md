@@ -57,3 +57,16 @@ Foi escolhida esta regra de negócio que define o limite do saque como R$1.000,0
 2. Se o token expirar enquanto alguém está usando o frontend no meio de uma operação, ele avisa ao usuário com um erro em vermelho escrito "Acesso não autorizado. Token ausente ou inválido.", ao ele tentar realizar a operação.
 
 3. No meu frontend, a View é representada pelos arquivos HTML e CSS, responsáveis pela apresentação visual, pelos formulários e pela organização dos elementos na tela. Já o controller é representado pelos arquivos js/login.js, js/saldo.js, js/operacoes.js, js/transferencias.js e js/criar-conta.js, os quais escutam as ações do usuário, coletam e validam as entradas dos campos, e decidem o que atualizar na View (exibir alertas de sucesso ou erro). Em contrapartida, a Model não está sendo representada por um arquivo específico, pois o frontend somente consome a model do backend.
+
+
+## Sprint 2
+
+## 6.4 - Parte B
+
+1. Se o sistema crescesse para 10 agências, o tamanho de cada vetor também cresceria para 10 posições, porque cada posição refere-se à uma agência. Isso representa um problema, porque como esse vetor todo precisa ir junto com cada mensagem trocada pelas agências, o tamanho do cabeçalho das mensagens vai ficando cada vez mais pesado, o que consome mais banda de rede e memória apenas para conseguir transportar esse vetor (relógio) de um lado para o outro.
+
+2. Dado esses vetores, o evento que ocorreu primeiro é o V1, porque o V2 domina ele (é maior ou igual em todas as posições).
+V1[3]=V2[3], V1[1]<V2[2],  V1[0]=V2[0]
+
+3. Dado esses vetores, os eventos são concorrentes, ou seja, ocorreram de forma independente, porque nenhum domina o outro completamente.
+V1[3]>V2[1], V1[1]<V2[3],  V1[0]=V2[0]
