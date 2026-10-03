@@ -79,3 +79,10 @@ V1[3]>V2[1], V1[1]<V2[3],  V1[0]=V2[0]
 
 3. O consumidor de mensagens (`assinar`) processar créditos sem passar por nenhuma verificação de token JWT é um problema de segurança, porque qualquer um que descobrir e usar minha URL da instância do RabbitMQ (que contém junto a senha) pode publicar uma mensagem na exchange (como colocar dinheiro), mesmo sem ter passado pela verificação de usuário e senha.
 
+## 8.3 - Parte D
+
+1. O relógio vetorial torna possível a análise de concorrência entre eventos devido a ele guardar um vetor de números que corresponde ao relógio, em que cada posição representa o de uma agência. Assim, como cada evento carrega o vetor e incrementa o relógio da agência em que ocorreu, é possível registrar estes dados e comparar os vetores de dois eventos. Se um deles é maior ou igual ao outro em todas as posições, afirma-se que há relação de causa e efeito entre os eventos; senão eles são independentes.
+
+2. No meu teste há os eventos "[agencia-1] CRIAR_CONTA ([5,3,0])  x  [agencia-0] TRANSFERENCIA_DEBITO ([7,0,0])" que o script classificou como concorrentes. Isso faz sentido, visto que são operações isoladas, que não dependem uma da outra para se realizar (criação de contas em agências diferentes) e que não trocam mensagens. Além disso, tem a questão da regra do relógio vetorial, que diz que se nenhum vetor domina o outro completamente, logo, são independentes.
+
+3. Como o algoritmo de comparação de vetores compara todos os pares, isso seria um problema em um sistema real com milhões de eventos, pois causaria muita lentidão, podendo travar a máquina por conta da quantidade de cálculos que seriam feitos toda vez que o script for executado. Para tornar essa análise mais escalável, poderia mudar o script para utilizar uma implementação de grafo de causa e efeito direto, em que um evento, ao ser criado, já recebe uma marcação indicando de qual evento ele descende. Assim, quando precisar saber se existe uma relação entre um evento A e B, basta consultar esta marcação e analisar os eventos "pais".
