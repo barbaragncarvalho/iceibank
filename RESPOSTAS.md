@@ -70,3 +70,12 @@ V1[3]=V2[3], V1[1]<V2[2],  V1[0]=V2[0]
 
 3. Dado esses vetores, os eventos são concorrentes, ou seja, ocorreram de forma independente, porque nenhum domina o outro completamente.
 V1[3]>V2[1], V1[1]<V2[3],  V1[0]=V2[0]
+
+## 7.5 - Parte C
+
+1. No passo 4 da tarefa, o que aconteceu quando a Agência 1 voltou foi que ela recebeu a mensagem que estava na fila do RabbitMQ para ela, tentou processá-la, mas deu erro. Porém, o fato da mensagem não ter sido aplicada com sucesso não tem nada a ver com a mensageria ter falhado, pois ela cumpriu seu papel e entregou a mensagem assim que a agência se reconectou. O erro ocorreu porque, como a agência foi reiniciada, sua memória também foi e ela perdeu o registro da conta 1, que deveria receber o dinheiro. Assim, gerou o erro de "conta não encontrada" que apareceu no terminal.
+
+2. Em relação à Sprint 1, a mensageria tem a vantagem de que a mensagem enviada sempre chegará à agência de destino, mesmo que ela esteja fora do ar no momento, pois ela fica guardada numa fila até que a agência volte. Assim, não ocorre um erro na chamada por este motivo, como ocorria na Sprint 1. Entretanto, continua sendo um problema a questão da consistência, uma vez que o débito na conta de origem é realizado e depois é enviada a mensagem de crédito para a de destino. Porém, a mensagem ser recebida não é garantia de que a operação de crédito foi efetivada, principalmente no cenário da outra agência ter sido reiniciada, em que a conta que deveria receber não existe mais, gerando erro.
+
+3. O consumidor de mensagens (`assinar`) processar créditos sem passar por nenhuma verificação de token JWT é um problema de segurança, porque qualquer um que descobrir e usar minha URL da instância do RabbitMQ (que contém junto a senha) pode publicar uma mensagem na exchange (como colocar dinheiro), mesmo sem ter passado pela verificação de usuário e senha.
+
