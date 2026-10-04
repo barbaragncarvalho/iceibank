@@ -20,11 +20,12 @@ public class RegistroEventos {
         this.caminhoArquivo = pastaDados.resolve("eventos-" + nomeAgencia + ".jsonl");
     }
 
-    public Map<String, Object> registrar(String tipo, int timestampLamport, Map<String, Object> detalhes) throws IOException {
+    public Map<String, Object> registrar(String tipo, int[] timestampVetorial, Map<String, Object> detalhes)
+            throws IOException {
         Map<String, Object> evento = new LinkedHashMap<>();
         evento.put("agencia", nomeAgencia);
         evento.put("tipo", tipo);
-        evento.put("timestampLamport", timestampLamport);
+        evento.put("timestampVetorial", timestampVetorial);
         evento.put("horaParede", Instant.now().toString());
         evento.put("detalhes", detalhes);
 
@@ -32,11 +33,10 @@ public class RegistroEventos {
         try (FileWriter writer = new FileWriter(caminhoArquivo.toFile(), true)) {
             writer.write(linha + System.lineSeparator());
         }
-        System.out.println("[Lamport " + timestampLamport + "] " + tipo + " " + detalhes);
+        System.out.println("[Vetorial " + java.util.Arrays.toString(timestampVetorial) + "] " + tipo + " " + detalhes);
         return evento;
     }
 
-    // Serializador simples, só para os tipos usados neste projeto (String, Number, Map aninhado).
     @SuppressWarnings("unchecked")
     private String paraJson(Object valor) {
         if (valor == null) {
@@ -47,7 +47,8 @@ public class RegistroEventos {
             Map<String, Object> mapa = (Map<String, Object>) valor;
             boolean primeiro = true;
             for (Map.Entry<String, Object> entrada : mapa.entrySet()) {
-                if (!primeiro) sb.append(",");
+                if (!primeiro)
+                    sb.append(",");
                 sb.append("\"").append(entrada.getKey()).append("\":");
                 sb.append(paraJson(entrada.getValue()));
                 primeiro = false;
@@ -57,6 +58,17 @@ public class RegistroEventos {
         }
         if (valor instanceof Number) {
             return valor.toString();
+        }
+        if (valor instanceof int[]) {
+            int[] vetor = (int[]) valor;
+            StringBuilder sb = new StringBuilder("[");
+            for (int i = 0; i < vetor.length; i++) {
+                if (i > 0)
+                    sb.append(",");
+                sb.append(vetor[i]);
+            }
+            sb.append("]");
+            return sb.toString();
         }
         String texto = valor.toString().replace("\\", "\\\\").replace("\"", "\\\"");
         return "\"" + texto + "\"";

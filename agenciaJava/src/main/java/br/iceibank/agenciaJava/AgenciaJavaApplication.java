@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import br.iceibank.agenciaJava.services.RegistroEventos;
-
+import br.iceibank.agenciaJava.services.RelogioVetorial;
 import br.iceibank.agenciaJava.config.AgenciaConfig;
 
 @SpringBootApplication
@@ -17,7 +17,12 @@ public class AgenciaJavaApplication {
 	}
 
 	@Bean
-    public RegistroEventos registroEventos(AgenciaConfig config) throws IOException {
-        return new RegistroEventos("agencia-" + config.getIdAgencia());
-    }
+	public RegistroEventos registroEventos(AgenciaConfig config) throws IOException {
+		return new RegistroEventos("agencia-" + config.getIdAgencia());
+	}
+
+	@Bean
+	public RelogioVetorial relogioVetorial(AgenciaConfig config) {
+		return new RelogioVetorial(config.getIdAgencia(), 3);
+	}
 }

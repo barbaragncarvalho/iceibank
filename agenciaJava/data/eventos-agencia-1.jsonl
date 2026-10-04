@@ -18,3 +18,17 @@
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":15,"horaParede":"2026-09-07T18:47:48.047862100Z","detalhes":{"idDestino":0,"idOrigem":1,"valor":10.0}}
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":20,"horaParede":"2026-09-07T18:48:09.776591300Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":10.0}}
 {"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":22,"horaParede":"2026-09-07T18:50:57.287657800Z","detalhes":{"origemAgencia":0,"idConta":1,"valor":1.0}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampVetorial":[0,1,0],"horaParede":"2026-10-04T17:55:33.756756300Z","detalhes":{"nomeAluno":"Bianca","saldoInicial":130.0,"id":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[3,2,0],"horaParede":"2026-10-04T17:56:34.035634900Z","detalhes":{"idConta":1,"origemAgencia":0,"valor":60.0}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampVetorial":[0,1,0],"horaParede":"2026-10-04T18:08:42.676722200Z","detalhes":{"saldoInicial":20.0,"nomeAluno":"bianca","id":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[3,2,0],"horaParede":"2026-10-04T18:09:12.156287300Z","detalhes":{"valor":60.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[7,3,0],"horaParede":"2026-10-04T18:17:00.851219700Z","detalhes":{"valor":60.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[9,4,0],"horaParede":"2026-10-04T18:19:27.068110700Z","detalhes":{"valor":19.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[12,5,0],"horaParede":"2026-10-04T18:25:08.075128500Z","detalhes":{"valor":60.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampVetorial":[0,1,0],"horaParede":"2026-10-04T18:38:18.919806400Z","detalhes":{"nomeAluno":"bianca","saldoInicial":20.0,"id":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[3,2,0],"horaParede":"2026-10-04T18:38:40.119201700Z","detalhes":{"idConta":1,"origemAgencia":0,"valor":60.0}}
+{"agencia":"agencia-1","tipo":"CRIAR_CONTA","timestampVetorial":[0,1,0],"horaParede":"2026-10-04T18:52:27.242435900Z","detalhes":{"id":1,"saldoInicial":20.0,"nomeAluno":"bianca"}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[4,2,0],"horaParede":"2026-10-04T18:55:44.265358Z","detalhes":{"valor":60.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[6,3,0],"horaParede":"2026-10-04T18:59:14.449214100Z","detalhes":{"valor":10.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[8,4,0],"horaParede":"2026-10-04T19:01:52.152942200Z","detalhes":{"valor":5.0,"origemAgencia":0,"idConta":1}}
+{"agencia":"agencia-1","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampVetorial":[15,5,0],"horaParede":"2026-10-04T19:06:01.625464100Z","detalhes":{"valor":5.0,"origemAgencia":0,"idConta":1}}

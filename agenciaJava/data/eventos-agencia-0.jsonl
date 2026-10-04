@@ -39,3 +39,26 @@
 {"agencia":"agencia-0","tipo":"TRANSFERENCIA_CREDITO_REMOTO","timestampLamport":17,"horaParede":"2026-09-07T18:47:48.148608800Z","detalhes":{"origemAgencia":1,"idConta":0,"valor":10.0}}
 {"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":18,"horaParede":"2026-09-07T18:48:09.763581200Z","detalhes":{"idDestino":1,"idOrigem":3,"valor":10.0}}
 {"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampLamport":20,"horaParede":"2026-09-07T18:50:57.272910500Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":1.0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampVetorial":[1,0,0],"horaParede":"2026-10-04T17:54:30.498059200Z","detalhes":{"nomeAluno":"ana clara","id":0,"saldoInicial":100.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[2,0,0],"horaParede":"2026-10-04T17:56:33.281907600Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":60.0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampVetorial":[1,0,0],"horaParede":"2026-10-04T18:08:20.567114500Z","detalhes":{"saldoInicial":100.0,"id":0,"nomeAluno":"ana"}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[2,0,0],"horaParede":"2026-10-04T18:09:11.408847300Z","detalhes":{"idDestino":1,"valor":60.0,"idOrigem":0}}
+{"agencia":"agencia-0","tipo":"SAQUE","timestampVetorial":[4,0,0],"horaParede":"2026-10-04T18:15:37.406297500Z","detalhes":{"novoSaldo":19.0,"valor":21.0,"id":0}}
+{"agencia":"agencia-0","tipo":"DEPOSITO","timestampVetorial":[5,0,0],"horaParede":"2026-10-04T18:16:39.894132700Z","detalhes":{"novoSaldo":99.0,"valor":80.0,"id":0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[6,0,0],"horaParede":"2026-10-04T18:17:00.501006700Z","detalhes":{"idDestino":1,"valor":60.0,"idOrigem":0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[8,0,0],"horaParede":"2026-10-04T18:19:26.711945600Z","detalhes":{"idDestino":1,"valor":19.0,"idOrigem":0}}
+{"agencia":"agencia-0","tipo":"DEPOSITO","timestampVetorial":[10,0,0],"horaParede":"2026-10-04T18:24:57.002630900Z","detalhes":{"novoSaldo":80.0,"valor":60.0,"id":0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[11,0,0],"horaParede":"2026-10-04T18:25:07.705304300Z","detalhes":{"idDestino":1,"valor":60.0,"idOrigem":0}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampVetorial":[1,0,0],"horaParede":"2026-10-04T18:37:44.538614Z","detalhes":{"id":0,"saldoInicial":100.0,"nomeAluno":"ana"}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[2,0,0],"horaParede":"2026-10-04T18:38:39.359893800Z","detalhes":{"idOrigem":0,"valor":60.0,"idDestino":1}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampVetorial":[1,0,0],"horaParede":"2026-10-04T18:50:48.052549500Z","detalhes":{"nomeAluno":"ana","id":0,"saldoInicial":100.0}}
+{"agencia":"agencia-0","tipo":"SAQUE","timestampVetorial":[2,0,0],"horaParede":"2026-10-04T18:55:32.363220500Z","detalhes":{"novoSaldo":90.0,"id":0,"valor":10.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[3,0,0],"horaParede":"2026-10-04T18:55:43.503160400Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":60.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[5,0,0],"horaParede":"2026-10-04T18:59:14.093010600Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":10.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[7,0,0],"horaParede":"2026-10-04T19:01:51.796056200Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":5.0}}
+{"agencia":"agencia-0","tipo":"DEPOSITO","timestampVetorial":[9,0,0],"horaParede":"2026-10-04T19:02:06.278962900Z","detalhes":{"novoSaldo":85.0,"id":0,"valor":70.0}}
+{"agencia":"agencia-0","tipo":"SAQUE","timestampVetorial":[10,0,0],"horaParede":"2026-10-04T19:02:25.075853400Z","detalhes":{"novoSaldo":55.0,"id":0,"valor":30.0}}
+{"agencia":"agencia-0","tipo":"SAQUE","timestampVetorial":[11,0,0],"horaParede":"2026-10-04T19:02:36.489695400Z","detalhes":{"novoSaldo":45.0,"id":0,"valor":10.0}}
+{"agencia":"agencia-0","tipo":"DEPOSITO","timestampVetorial":[12,0,0],"horaParede":"2026-10-04T19:05:40.588055900Z","detalhes":{"novoSaldo":60.0,"id":0,"valor":15.0}}
+{"agencia":"agencia-0","tipo":"SAQUE","timestampVetorial":[13,0,0],"horaParede":"2026-10-04T19:05:51.184606900Z","detalhes":{"novoSaldo":40.0,"id":0,"valor":20.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[14,0,0],"horaParede":"2026-10-04T19:06:01.269892600Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":5.0}}

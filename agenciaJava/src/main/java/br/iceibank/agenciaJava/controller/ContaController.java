@@ -3,10 +3,12 @@ package br.iceibank.agenciaJava.controller;
 import br.iceibank.agenciaJava.config.AgenciaConfig;
 import br.iceibank.agenciaJava.model.ContaModel;
 import br.iceibank.agenciaJava.services.RegistroEventos;
-import br.iceibank.agenciaJava.services.RelogioLamport;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import br.iceibank.agenciaJava.services.RelogioVetorial;
 
 import java.io.IOException;
 import java.util.Map;
@@ -17,15 +19,19 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ContaController {
 
     public static final Map<Integer, ContaModel> contas = new ConcurrentHashMap<>();
+    public static final Map<Integer, String> alertas = new ConcurrentHashMap<>();
 
-    private final RelogioLamport relogio;
+    private final RelogioVetorial relogio;
     private final RegistroEventos registro;
     private final AgenciaConfig config;
+    private final RabbitTemplate rabbitTemplate;
 
-    public ContaController(RelogioLamport relogio, RegistroEventos registro, AgenciaConfig config) {
+    public ContaController(RelogioVetorial relogio, RegistroEventos registro, AgenciaConfig config,
+            RabbitTemplate rabbitTemplate) {
         this.relogio = relogio;
         this.registro = registro;
         this.config = config;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @PostMapping
@@ -39,13 +45,12 @@ public class ContaController {
                     .body(Map.of("erro", "Conta já existe."));
         }
 
-        int ts = relogio.eventoLocal();
+        int[] ts = relogio.eventoLocal();
         contas.put(conta.getId(), conta);
         registro.registrar("CRIAR_CONTA", ts, Map.of(
                 "id", conta.getId(),
                 "nomeAluno", conta.getNomeAluno(),
-                "saldoInicial", conta.getSaldoInicial()
-        ));
+                "saldoInicial", conta.getSaldoInicial()));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(conta);
     }
@@ -61,7 +66,8 @@ public class ContaController {
     }
 
     @PostMapping("/{id}/depositar")
-    public ResponseEntity<?> depositar(@PathVariable int id, @RequestBody Map<String, Double> payload) throws IOException {
+    public ResponseEntity<?> depositar(@PathVariable int id, @RequestBody Map<String, Double> payload)
+            throws IOException {
         ContaModel conta = contas.get(id);
         if (conta == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -69,7 +75,7 @@ public class ContaController {
         }
 
         double valor = payload.get("valor");
-        int ts = relogio.eventoLocal();
+        int[] ts = relogio.eventoLocal();
         conta.setSaldoInicial(conta.getSaldoInicial() + valor);
         registro.registrar("DEPOSITO", ts, Map.of("id", id, "valor", valor, "novoSaldo", conta.getSaldoInicial()));
 
@@ -86,8 +92,8 @@ public class ContaController {
 
         double valor = payload.get("valor");
         if (valor > 1000) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(Map.of("erro", "Operação cancelada. O valor máximo permitido por saque é de R$ 1.000,00."));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("erro", "Operação cancelada. O valor máximo permitido por saque é de R$ 1.000,00."));
         }
 
         if (conta.getSaldoInicial() < valor) {
@@ -95,10 +101,28 @@ public class ContaController {
                     .body(Map.of("erro", "Saldo insuficiente."));
         }
 
-        int ts = relogio.eventoLocal();
+        int[] ts = relogio.eventoLocal();
         conta.setSaldoInicial(conta.getSaldoInicial() - valor);
         registro.registrar("SAQUE", ts, Map.of("id", id, "valor", valor, "novoSaldo", conta.getSaldoInicial()));
 
+        if (conta.getSaldoInicial() < 50.0) {
+            Map<String, Object> alerta = Map.of(
+                    "idConta", id,
+                    "saldoAtual", conta.getSaldoInicial(),
+                    "agencia", config.getIdAgencia());
+            rabbitTemplate.convertAndSend("iceibank.eventos", "alerta.saldo.baixo", alerta);
+        }
+
         return ResponseEntity.ok(conta);
+    }
+
+    @GetMapping("/{id}/alertas")
+    public ResponseEntity<?> buscarAlertas(@PathVariable int id) {
+        String mensagemAlerta = alertas.remove(id);
+
+        if (mensagemAlerta != null) {
+            return ResponseEntity.ok(Map.of("alerta", mensagemAlerta));
+        }
+        return ResponseEntity.ok(Map.of());
     }
 }
