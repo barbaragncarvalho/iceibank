@@ -64,6 +64,7 @@ btnCriar.addEventListener('click', async () => {
         msg.className = 'alerta sucesso';
         msg.innerText = `Conta ${id} criada com sucesso para ${nomeAluno}!`;
         msg.style.display = 'block';
+        document.getElementById('form-criar-conta').reset();
 
     } catch (err) {
         msg.className = 'alerta erro';

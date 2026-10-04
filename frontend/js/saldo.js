@@ -20,6 +20,7 @@ form.addEventListener('submit', async (e) => {
         msg.className = 'alerta sucesso';
         msg.innerHTML = `<strong>Conta:</strong> ${conta.id}<br><strong>Titular:</strong> ${conta.nomeAluno}<br><strong>Saldo Atual:</strong> R$ ${conta.saldoInicial.toFixed(2)}`;
         msg.style.display = 'block';
+        form.reset();
     } catch (err) {
         msg.className = 'alerta erro';
         msg.innerText = err.message;
