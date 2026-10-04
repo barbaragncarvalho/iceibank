@@ -61,6 +61,10 @@ Foi escolhida esta regra de negócio que define o limite do saque como R$1.000,0
 
 ## Sprint 2
 
+## 2.1 Funcionalidade adicional: Notificação de saldo baixo
+
+Foi escolhida esta funcionalidade para implementar, na qual, quando o saldo da conta logada fica menor que R$50,00, é gerado um aviso em vermelho no momento, sinalizando o usuário desta informação. Esta é uma funcionalidade útil, pois o aviso em tempo real alerta o cliente a não realizar uma nova compra no débito, evitando que ele acidentalmente use o crédito do cheque especial. Assim, como há altas taxas nessa modalidade, isso previne o endividamento por desatenção, aumentando o nível de confiança no IceiBank.
+
 ## 6.4 - Parte B
 
 1. Se o sistema crescesse para 10 agências, o tamanho de cada vetor também cresceria para 10 posições, porque cada posição refere-se à uma agência. Isso representa um problema, porque como esse vetor todo precisa ir junto com cada mensagem trocada pelas agências, o tamanho do cabeçalho das mensagens vai ficando cada vez mais pesado, o que consome mais banda de rede e memória apenas para conseguir transportar esse vetor (relógio) de um lado para o outro.

@@ -62,3 +62,4 @@
 {"agencia":"agencia-0","tipo":"DEPOSITO","timestampVetorial":[12,0,0],"horaParede":"2026-10-04T19:05:40.588055900Z","detalhes":{"novoSaldo":60.0,"id":0,"valor":15.0}}
 {"agencia":"agencia-0","tipo":"SAQUE","timestampVetorial":[13,0,0],"horaParede":"2026-10-04T19:05:51.184606900Z","detalhes":{"novoSaldo":40.0,"id":0,"valor":20.0}}
 {"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[14,0,0],"horaParede":"2026-10-04T19:06:01.269892600Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":5.0}}
+{"agencia":"agencia-0","tipo":"TRANSFERENCIA_DEBITO","timestampVetorial":[16,0,0],"horaParede":"2026-10-04T19:24:02.830548200Z","detalhes":{"idDestino":1,"idOrigem":0,"valor":5.0}}
