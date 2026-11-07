@@ -100,3 +100,12 @@ V1[3]>V2[1], V1[1]<V2[3],  V1[0]=V2[0]
 2. Ver mais de uma agência declarar que se tornou líder durante a subida inicial não é um bug, mas um comportamento esperado do algoritmo. Como os processos sobem quase ao mesmo tempo, os nós de menor ID iniciam eleições e, antes de receberem a resposta dos nós maiores, presumem temporariamente que venceram e anunciam a liderança até que o nó de maior ID entre em ação e assuma o controle definitivo. Por isso, o líder que prevaleceu foi a agência 2, com maior id.
 
 3. O endpoint /bully/eleicao não ter nenhuma autenticação, em um sistema real, seria uma grande vulnerabilidade, já que qualquer sistema externo poderia enviar requisições falsas e derrubar ou desestabilizar a liderança da rede do ICEIBank a qualquer momento.
+
+## 6.4 - Parte B
+
+1. Se o intervalo do heartbeat fosse muito curto, como 100 milissegundos, as agências ficariam testando umas às outras o tempo todo, o que sobrecarregaria a rede e geraria um tráfego desnecessário de dados, apesar de detectar quando o líder caiu de forma mais rápida. Por outro lado, se fosse muito longo, como 60 segundos, o sistema demoraria demais para perceber que o líder caiu, deixando o sistema muito lento para reagir a falhas.
+
+2. Esse comportamento de a agência recuperada tomar a liderança de volta é o normal do algoritmo bully. Porém, pode ser indesejável em alguns cenários. Em um sistema real, se uma troca de liderança acontecer exatamente no meio de uma transação bancária importante ou de uma operação crítica, isso pode causar inconsistências, corromper dados ou interromper o atendimento no momento em que a estabilidade era mais necessária.
+
+3. Se a rede estivesse genuinamente lenta e ultrapassasse esse limite de 1 segundo, a agência emissora acharia por engano que a outra agência caiu, mesmo ela estando viva e funcionando corretamente. Isso provocaria falsos alarmes de falha, gerando reeleições desnecessárias e instabilidade na rede por causa de um simples atraso na conexão.
+
