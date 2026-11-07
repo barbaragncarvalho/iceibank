@@ -109,3 +109,6 @@ V1[3]>V2[1], V1[1]<V2[3],  V1[0]=V2[0]
 
 3. Se a rede estivesse genuinamente lenta e ultrapassasse esse limite de 1 segundo, a agência emissora acharia por engano que a outra agência caiu, mesmo ela estando viva e funcionando corretamente. Isso provocaria falsos alarmes de falha, gerando reeleições desnecessárias e instabilidade na rede por causa de um simples atraso na conexão.
 
+## 7.3 - Parte C
+
+1. Observando a saída do script, a liderança mudou de mãos três vezes durante a tempestade de eleições da parte A, porque, como subi as agência em ordem crescente de id, cada agência que subia sozinha primeiro pensava que era a líder (já que ainda não conhecia as outras) e depois passava o cargo assim que uma agência com um ID maior aparecia e assumia o comando. Entretanto, essas trocas rápidas gera um custo real para o sistema, pois consome recursos de rede com mensagens extras e exige processamento desnecessário até que todas as agências se comuniquem e o algoritmo consiga se estabilizar no nó de maior ID.
