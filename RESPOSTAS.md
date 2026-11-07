@@ -90,3 +90,13 @@ V1[3]>V2[1], V1[1]<V2[3],  V1[0]=V2[0]
 2. No meu teste há os eventos "[agencia-1] CRIAR_CONTA ([5,3,0])  x  [agencia-0] TRANSFERENCIA_DEBITO ([7,0,0])" que o script classificou como concorrentes. Isso faz sentido, visto que são operações isoladas, que não dependem uma da outra para se realizar (criação de contas em agências diferentes) e que não trocam mensagens. Além disso, tem a questão da regra do relógio vetorial, que diz que se nenhum vetor domina o outro completamente, logo, são independentes.
 
 3. Como o algoritmo de comparação de vetores compara todos os pares, isso seria um problema em um sistema real com milhões de eventos, pois causaria muita lentidão, podendo travar a máquina por conta da quantidade de cálculos que seriam feitos toda vez que o script for executado. Para tornar essa análise mais escalável, poderia mudar o script para utilizar uma implementação de grafo de causa e efeito direto, em que um evento, ao ser criado, já recebe uma marcação indicando de qual evento ele descende. Assim, quando precisar saber se existe uma relação entre um evento A e B, basta consultar esta marcação e analisar os eventos "pais".
+
+## Sprint 3
+
+## 5.5 - Parte A
+
+1. O algoritmo de Bully sempre escolhe o processo com o maior ID porque ele funciona como uma disputa de força (valentão), em que todos conhecem os IDs uns dos outros, garantindo de forma simples que o nó com maior ID assuma o comando. Se a regra fosse invertida para escolher o menor ID o resultado seria diferente, pois o de menor ID seria o líder, mas seria exatamente igual em como funciona e estaria totalmente correto, desde que todas as agências seguissem a mesma regra de prioridade.
+
+2. Ver mais de uma agência declarar que se tornou líder durante a subida inicial não é um bug, mas um comportamento esperado do algoritmo. Como os processos sobem quase ao mesmo tempo, os nós de menor ID iniciam eleições e, antes de receberem a resposta dos nós maiores, presumem temporariamente que venceram e anunciam a liderança até que o nó de maior ID entre em ação e assuma o controle definitivo. Por isso, o líder que prevaleceu foi a agência 2, com maior id.
+
+3. O endpoint /bully/eleicao não ter nenhuma autenticação, em um sistema real, seria uma grande vulnerabilidade, já que qualquer sistema externo poderia enviar requisições falsas e derrubar ou desestabilizar a liderança da rede do ICEIBank a qualquer momento.
