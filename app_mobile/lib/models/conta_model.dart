@@ -19,7 +19,7 @@ class ContaModel {
     return ContaModel(
       id: json['id'] ?? json['numero'] ?? 0,
       agencia: json['agencia'] ?? agenciaPadrao,
-      titular: json['titular'] ?? 'Titular',
+      titular: json['nomeAluno'] ?? 'Nome não informado',
       saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
       vetorAtual: json['vetorAtual'] != null
           ? List<int>.from(json['vetorAtual'])
@@ -31,7 +31,7 @@ class ContaModel {
   Map<String, dynamic> toJson() => {
         'id': id,
         'agencia': agencia,
-        'titular': titular,
+        'nomeAluno': titular,
         'saldo': saldo,
         'vetorAtual': vetorAtual,
         'provisorio': provisorio,

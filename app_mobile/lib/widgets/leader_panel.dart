@@ -120,7 +120,7 @@ class _LeaderPanelState extends State<LeaderPanel> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Color(0xFF0A2E65))),
               Text('Conta ID: ${conflito.contaAtual['id']}'),
-              Text('Titular: ${conflito.contaAtual['titular']}'),
+              Text('Titular: ${conflito.contaAtual['nomeAluno']}'),
               Text(
                 'Saldo Real: R\$ ${((conflito.contaAtual['saldo'] as num?)?.toDouble() ?? 0.0).toStringAsFixed(2)}',
                 style: const TextStyle(

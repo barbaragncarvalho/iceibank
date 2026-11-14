@@ -151,7 +151,7 @@ class ApiService {
           headers: await _headers(),
           body: jsonEncode({
             'id': idConta,
-            'titular': titular,
+            'nomeAluno': titular,
             'saldoInicial': saldoInicial,
           }),
         )
@@ -337,7 +337,7 @@ class ApiService {
           final modeloReal = ContaModel(
             id: contaReal['id'] ?? op.contaId,
             agencia: contaReal['agencia'] ?? op.agenciaId,
-            titular: contaReal['titular'] ?? 'Titular',
+            titular: contaReal['nomeAluno'] ?? 'Nome não informado',
             saldo: (contaReal['saldo'] as num?)?.toDouble() ?? 0.0,
             vetorAtual: vetorReal,
             provisorio: false,
