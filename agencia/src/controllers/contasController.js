@@ -1,4 +1,6 @@
 import * as config from '../config.js';
+import compararVetores from '../services/compararVetores.js';
+import { publicar } from '../services/mensageria.js';
 
 function criarConta(req, res) {
   const { id, nomeAluno, saldoInicial } = req.body;
@@ -16,14 +18,6 @@ function criarConta(req, res) {
   registro.registrar('CRIAR_CONTA', ts, { id, nomeAluno, saldoInicial });
 
   res.status(201).json(contas.get(id));
-}
-
-function consultarSaldo(req, res) {
-  const { contas } = req.app.locals;
-  const id = parseInt(req.params.id, 10);
-  const conta = contas.get(id);
-  if (!conta) return res.status(404).json({ erro: 'Conta não encontrada nesta agência.' });
-  res.json(conta);
 }
 
 function depositar(req, res) {
@@ -55,4 +49,68 @@ function sacar(req, res) {
   res.json(conta);
 }
 
-export { criarConta, consultarSaldo, depositar, sacar };
+function consultarSaldo(req, res) {
+  const { contas, relogio } = req.app.locals;
+  const id = parseInt(req.params.id, 10);
+  const conta = contas.get(id);
+  if (!conta) return res.status(404).json({ erro: 'Conta não encontrada nesta agência.' });
+  res.json({ ...conta, vetorAtual: relogio.obterVetorAtual() });
+}
+
+function sincronizarOperacaoPendente(req, res) {
+  const { contas, relogio, registro, idAgencia } = req.app.locals;
+  const id = parseInt(req.params.id, 10);
+  const { tipo, valor, vetorConhecido, agenciaDestino, contaDestino } = req.body;
+
+  const conta = contas.get(id);
+  if (!conta) return res.status(404).json({ erro: 'Conta não encontrada nesta agência.' });
+
+  const vetorAtual = relogio.obterVetorAtual();
+  const relacao = compararVetores(vetorConhecido, vetorAtual);
+
+  if (relacao !== 'IGUAIS') {
+    // outras operações aconteceram na agência desde a última sincronização do
+    // app - não aplica cegamente, devolve o estado atual para o app decidir
+    return res.status(409).json({
+      erro: 'Conflito detectado: o estado da conta mudou desde a última sincronização do app.',
+      vetorConhecido,
+      vetorAtual,
+      contaAtual: conta,
+    });
+  }
+
+  let vetor;
+  if (tipo === 'DEPOSITO') {
+    vetor = relogio.eventoLocal();
+    conta.saldo += valor;
+  } else if (tipo === 'SAQUE') {
+    if (conta.saldo < valor) return res.status(400).json({ erro: 'Saldo insuficiente.' });
+    vetor = relogio.eventoLocal();
+    conta.saldo -= valor;
+  } else if (tipo === 'TRANSFERENCIA') {
+    if (conta.saldo < valor) return res.status(400).json({ erro: 'Saldo insuficiente.' });
+
+    conta.saldo -= valor;
+
+    if (agenciaDestino === idAgencia) {
+      vetor = relogio.eventoLocal();
+      const dest = contas.get(contaDestino);
+      if (dest) dest.saldo += valor;
+    } else {
+      vetor = relogio.aoEnviar();
+      publicar(`agencia.${agenciaDestino}.creditar`, {
+        idConta: contaDestino,
+        valor: valor,
+        vetorEnvio: vetor,
+        origemAgencia: idAgencia
+      });
+    }
+  } else {
+    return res.status(400).json({ erro: 'Tipo de operação pendente não suportado.' });
+  }
+
+  registro.registrar('SINCRONIZACAO_OFFLINE', vetor, { id, tipo, valor, agenciaDestino, contaDestino });
+  res.json(conta);
+}
+
+export { criarConta, consultarSaldo, depositar, sacar, sincronizarOperacaoPendente };

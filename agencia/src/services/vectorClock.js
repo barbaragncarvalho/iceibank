@@ -21,6 +21,10 @@ class RelogioVetorial {
         this.vetor[this.idAgencia] += 1;
         return [...this.vetor];
     }
+
+    obterVetorAtual() {
+        return [...this.vetor];
+    }
 }
 
 export default RelogioVetorial;

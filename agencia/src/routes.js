@@ -30,4 +30,6 @@ const liderAtual = req.app.locals.bully.obterLiderAtual();
 res.json({ idAgencia: req.app.locals.idAgencia, liderAtual });
 });
 
+router.post('/contas/:id/sincronizar', contasController.sincronizarOperacaoPendente);
+
 export default router;
