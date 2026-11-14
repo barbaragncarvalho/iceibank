@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/conta_model.dart';
+import 'local_db.dart';
 
 typedef JsonMap = Map<String, dynamic>;
 typedef HeaderMap = Map<String, String>;
@@ -85,6 +86,8 @@ class ApiService {
           )
           .timeout(const Duration(seconds: 4));
 
+      if (response.statusCode == 404) return;
+
       if (response.statusCode != 200 && response.statusCode != 201) {
         final data = jsonDecode(response.body);
         throw Exception(data['erro'] ??
@@ -152,6 +155,7 @@ class ApiService {
           body: jsonEncode({
             'id': idConta,
             'nomeAluno': titular,
+            'titular': titular,
             'saldoInicial': saldoInicial,
           }),
         )
@@ -215,7 +219,7 @@ class ApiService {
       return cache;
     }
     throw Exception(
-        'Sem conexão com a Agência $idAgencia e nenhum dado salvo em cache para a conta $idConta.');
+        'Sem conexão com a Agência $idAgencia e nenhum dado salvo no SQLite para a conta $idConta.');
   }
 
   static Future<ContaModel> operarConta({
@@ -294,7 +298,7 @@ class ApiService {
     await salvarContaLocal(contaLocal);
 
     throw OperacaoOfflineSalvaException(
-      'Modo Offline: $tipo de R\$ ${valor.toStringAsFixed(2)} guardado como pendente! Saldo provisório: R\$ ${contaLocal.saldo.toStringAsFixed(2)}',
+      'Modo Offline (SQLite): $tipo de R\$ ${valor.toStringAsFixed(2)} guardado como pendente! Saldo provisório: R\$ ${contaLocal.saldo.toStringAsFixed(2)}',
     );
   }
 
@@ -303,7 +307,6 @@ class ApiService {
     if (fila.isEmpty) return [];
 
     List<String> resultados = [];
-    List<OperacaoPendente> restantes = List.from(fila);
 
     for (final op in fila) {
       try {
@@ -323,21 +326,24 @@ class ApiService {
         final data = jsonDecode(response.body);
 
         if (response.statusCode == 200) {
-          restantes.remove(op);
-          await _salvarFilaPendente(restantes);
+          if (op.dbId != null) {
+            await LocalDb.removerOperacaoPendente(op.dbId!);
+          }
           await consultarSaldo(op.agenciaId, op.contaId);
           resultados.add(
               'Operação pendente sincronizada automaticamente: ${op.tipo} de R\$ ${op.valor.toStringAsFixed(2)} (Conta #${op.contaId}).');
         } else if (response.statusCode == 409) {
-          restantes.remove(op);
-          await _salvarFilaPendente(restantes);
+          if (op.dbId != null) {
+            await LocalDb.removerOperacaoPendente(op.dbId!);
+          }
 
           final contaReal = data['contaAtual'] ?? {};
           final vetorReal = List<int>.from(data['vetorAtual'] ?? [0, 0, 0]);
           final modeloReal = ContaModel(
             id: contaReal['id'] ?? op.contaId,
             agencia: contaReal['agencia'] ?? op.agenciaId,
-            titular: contaReal['nomeAluno'] ?? 'Nome não informado',
+            titular:
+                contaReal['nomeAluno'] ?? contaReal['titular'] ?? 'Titular',
             saldo: (contaReal['saldo'] as num?)?.toDouble() ?? 0.0,
             vetorAtual: vetorReal,
             provisorio: false,
@@ -353,8 +359,9 @@ class ApiService {
             vetorAtual: vetorReal,
           );
         } else {
-          restantes.remove(op);
-          await _salvarFilaPendente(restantes);
+          if (op.dbId != null) {
+            await LocalDb.removerOperacaoPendente(op.dbId!);
+          }
           resultados.add(
               'Sincronização recusada (${response.statusCode}): ${data['erro'] ?? 'Erro'}');
         }
@@ -393,40 +400,19 @@ class ApiService {
     }
   }
 
-  static String _chaveConta(int agencia, int conta) =>
-      'cache_conta_${agencia}_$conta';
-  static const String _chaveFila = 'fila_operacoes_pendentes';
-
   static Future<void> salvarContaLocal(ContaModel conta) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-        _chaveConta(conta.agencia, conta.id), jsonEncode(conta.toJson()));
+    await LocalDb.salvarConta(conta);
   }
 
   static Future<ContaModel?> lerContaLocal(int agencia, int conta) async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_chaveConta(agencia, conta));
-    if (raw == null) return null;
-    return ContaModel.fromJson(jsonDecode(raw), agencia);
+    return await LocalDb.lerConta(agencia, conta);
   }
 
   static Future<List<OperacaoPendente>> listarOperacoesPendentes() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_chaveFila);
-    if (raw == null) return [];
-    final List lista = jsonDecode(raw);
-    return lista.map((item) => OperacaoPendente.fromJson(item)).toList();
+    return await LocalDb.listarOperacoesPendentes();
   }
 
   static Future<void> adicionarOperacaoPendente(OperacaoPendente op) async {
-    final fila = await listarOperacoesPendentes();
-    fila.add(op);
-    await _salvarFilaPendente(fila);
-  }
-
-  static Future<void> _salvarFilaPendente(List<OperacaoPendente> fila) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-        _chaveFila, jsonEncode(fila.map((e) => e.toJson()).toList()));
+    await LocalDb.inserirOperacaoPendente(op);
   }
 }

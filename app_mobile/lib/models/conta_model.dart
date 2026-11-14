@@ -19,7 +19,7 @@ class ContaModel {
     return ContaModel(
       id: json['id'] ?? json['numero'] ?? 0,
       agencia: json['agencia'] ?? agenciaPadrao,
-      titular: json['nomeAluno'] ?? 'Nome não informado',
+      titular: json['nomeAluno'] ?? json['titular'] ?? 'Nome não informado',
       saldo: (json['saldo'] as num?)?.toDouble() ?? 0.0,
       vetorAtual: json['vetorAtual'] != null
           ? List<int>.from(json['vetorAtual'])
@@ -32,6 +32,7 @@ class ContaModel {
         'id': id,
         'agencia': agencia,
         'nomeAluno': titular,
+        'titular': titular,
         'saldo': saldo,
         'vetorAtual': vetorAtual,
         'provisorio': provisorio,
@@ -39,6 +40,7 @@ class ContaModel {
 }
 
 class OperacaoPendente {
+  final int? dbId;
   final int agenciaId;
   final int contaId;
   final String tipo;
@@ -47,6 +49,7 @@ class OperacaoPendente {
   final String criadoEm;
 
   OperacaoPendente({
+    this.dbId,
     required this.agenciaId,
     required this.contaId,
     required this.tipo,
@@ -57,6 +60,7 @@ class OperacaoPendente {
 
   factory OperacaoPendente.fromJson(Map<String, dynamic> json) {
     return OperacaoPendente(
+      dbId: json['dbId'],
       agenciaId: json['agenciaId'],
       contaId: json['contaId'],
       tipo: json['tipo'],
@@ -67,6 +71,7 @@ class OperacaoPendente {
   }
 
   Map<String, dynamic> toJson() => {
+        if (dbId != null) 'dbId': dbId,
         'agenciaId': agenciaId,
         'contaId': contaId,
         'tipo': tipo,
