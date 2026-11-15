@@ -93,6 +93,12 @@ V1[3]>V2[1], V1[1]<V2[3],  V1[0]=V2[0]
 
 ## Sprint 3
 
+## 2.1 Funcionalidade adicional: Painel de Monitoramento de Saúde das Agências e Disparo Manual de Eleição
+
+Foi implementado um painel interativo de observabilidade e controle das agências em ambas as interfaces de usuário (Web e aplicativo mobile Flutter). A funcionalidade adiciona dois recursos ao sistema: o painel exibe em tempo real o estado individual de cada uma das três agências (Ag. 0, Ag. 1 e Ag. 2), indicando visualmente por meio de marcadores coloridos (verde para online e vermelho para offline) quais instâncias estão ativas na rede, além de destacar qual delas detém a liderança atual.
+
+Também foi incluído um botão na barra superior do frontend Web e do app Flutter que permite à pessoa forçar uma nova rodada do algoritmo de Bully, sem precisar aguardar o ciclo automático do heartbeat. Ao ser acionado, o backend executa iniciarEleicao(), registra o evento ELEICAO_INICIADA com o relógio vetorial atualizado no arquivo de log e renegocia a liderança entre os nós ativos.
+
 ## 5.5 - Parte A
 
 1. O algoritmo de Bully sempre escolhe o processo com o maior ID porque ele funciona como uma disputa de força (valentão), em que todos conhecem os IDs uns dos outros, garantindo de forma simples que o nó com maior ID assuma o comando. Se a regra fosse invertida para escolher o menor ID o resultado seria diferente, pois o de menor ID seria o líder, mas seria exatamente igual em como funciona e estaria totalmente correto, desde que todas as agências seguissem a mesma regra de prioridade.

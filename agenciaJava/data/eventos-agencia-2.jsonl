@@ -24,3 +24,5 @@
 {"agencia":"agencia-2","tipo":"LIDER_ELEITO","timestampVetorial":[10,12,23],"horaParede":"2026-11-15T15:30:48.824504800Z","detalhes":{"novoLider":2}}
 {"agencia":"agencia-2","tipo":"ELEICAO_INICIADA","timestampVetorial":[10,12,26],"horaParede":"2026-11-15T15:30:48.826517900Z","detalhes":{"candidata":2,"maioresConsultadas":[]}}
 {"agencia":"agencia-2","tipo":"LIDER_ELEITO","timestampVetorial":[10,12,27],"horaParede":"2026-11-15T15:30:48.827518200Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-2","tipo":"ELEICAO_INICIADA","timestampVetorial":[0,0,1],"horaParede":"2026-11-15T15:52:17.825909400Z","detalhes":{"candidata":2,"maioresConsultadas":[]}}
+{"agencia":"agencia-2","tipo":"LIDER_ELEITO","timestampVetorial":[0,0,2],"horaParede":"2026-11-15T15:52:17.826907300Z","detalhes":{"novoLider":2}}

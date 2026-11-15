@@ -59,3 +59,4 @@
 {"agencia":"agencia-1","tipo":"FALHA_LIDER_DETECTADA","timestampVetorial":[10,15,28],"horaParede":"2026-11-15T15:31:41.033532500Z","detalhes":{"liderSuspeito":2}}
 {"agencia":"agencia-1","tipo":"ELEICAO_INICIADA","timestampVetorial":[10,16,28],"horaParede":"2026-11-15T15:31:41.036069200Z","detalhes":{"candidata":1,"maioresConsultadas":[2]}}
 {"agencia":"agencia-1","tipo":"LIDER_ELEITO","timestampVetorial":[10,18,28],"horaParede":"2026-11-15T15:31:41.043310200Z","detalhes":{"novoLider":1}}
+{"agencia":"agencia-1","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[10,21,28],"horaParede":"2026-11-15T15:52:17.877553200Z","detalhes":{"novoLider":2}}

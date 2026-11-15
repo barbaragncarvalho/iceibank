@@ -82,3 +82,4 @@
 {"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[11,12,25],"horaParede":"2026-11-15T15:30:48.855677500Z","detalhes":{"novoLider":2}}
 {"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[12,12,29],"horaParede":"2026-11-15T15:30:48.866243300Z","detalhes":{"novoLider":2}}
 {"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[13,20,29],"horaParede":"2026-11-15T15:31:41.057227800Z","detalhes":{"novoLider":1}}
+{"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[14,20,29],"horaParede":"2026-11-15T15:52:17.877553200Z","detalhes":{"novoLider":2}}
