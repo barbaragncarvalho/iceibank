@@ -83,3 +83,9 @@
 {"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[12,12,29],"horaParede":"2026-11-15T15:30:48.866243300Z","detalhes":{"novoLider":2}}
 {"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[13,20,29],"horaParede":"2026-11-15T15:31:41.057227800Z","detalhes":{"novoLider":1}}
 {"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[14,20,29],"horaParede":"2026-11-15T15:52:17.877553200Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-0","tipo":"ELEICAO_INICIADA","timestampVetorial":[1,0,0],"horaParede":"2026-11-15T16:15:42.562766Z","detalhes":{"candidata":0,"maioresConsultadas":[1,2]}}
+{"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[4,5,14],"horaParede":"2026-11-15T16:15:42.880632500Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[5,5,14],"horaParede":"2026-11-15T16:15:42.881637200Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[6,5,14],"horaParede":"2026-11-15T16:15:42.882988200Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-0","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[7,5,19],"horaParede":"2026-11-15T16:15:42.886046Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-0","tipo":"CRIAR_CONTA","timestampVetorial":[8,5,19],"horaParede":"2026-11-15T16:51:17.610032100Z","detalhes":{"nomeAluno":"lua","saldoInicial":100.0,"id":0}}

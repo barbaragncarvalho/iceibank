@@ -60,3 +60,10 @@
 {"agencia":"agencia-1","tipo":"ELEICAO_INICIADA","timestampVetorial":[10,16,28],"horaParede":"2026-11-15T15:31:41.036069200Z","detalhes":{"candidata":1,"maioresConsultadas":[2]}}
 {"agencia":"agencia-1","tipo":"LIDER_ELEITO","timestampVetorial":[10,18,28],"horaParede":"2026-11-15T15:31:41.043310200Z","detalhes":{"novoLider":1}}
 {"agencia":"agencia-1","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[10,21,28],"horaParede":"2026-11-15T15:52:17.877553200Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-1","tipo":"ELEICAO_INICIADA","timestampVetorial":[0,1,0],"horaParede":"2026-11-15T16:15:42.562766Z","detalhes":{"candidata":1,"maioresConsultadas":[2]}}
+{"agencia":"agencia-1","tipo":"ELEICAO_RECEBIDA","timestampVetorial":[2,3,0],"horaParede":"2026-11-15T16:15:42.804285600Z","detalhes":{"de":0}}
+{"agencia":"agencia-1","tipo":"ELEICAO_INICIADA","timestampVetorial":[2,4,0],"horaParede":"2026-11-15T16:15:42.866088400Z","detalhes":{"candidata":1,"maioresConsultadas":[2]}}
+{"agencia":"agencia-1","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[2,6,8],"horaParede":"2026-11-15T16:15:42.873581800Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-1","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[2,7,8],"horaParede":"2026-11-15T16:15:42.876103500Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-1","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[2,8,13],"horaParede":"2026-11-15T16:15:42.877108200Z","detalhes":{"novoLider":2}}
+{"agencia":"agencia-1","tipo":"COORDENADOR_RECEBIDO","timestampVetorial":[3,9,18],"horaParede":"2026-11-15T16:15:42.886046Z","detalhes":{"novoLider":2}}

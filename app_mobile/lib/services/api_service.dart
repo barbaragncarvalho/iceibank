@@ -78,15 +78,23 @@ class ApiService {
       int idAgencia, String usuario, String senha) async {
     await detectarPortaBase();
     try {
-      final response = await http
+      http.Response response = await http
           .post(
-            Uri.parse('${urlAgencia(idAgencia)}/auth/registrar'),
+            Uri.parse('${urlAgencia(idAgencia)}/auth/registro'),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({'usuario': usuario, 'senha': senha}),
           )
           .timeout(const Duration(seconds: 4));
 
-      if (response.statusCode == 404) return;
+      if (response.statusCode == 404) {
+        response = await http
+            .post(
+              Uri.parse('${urlAgencia(idAgencia)}/auth/registrar'),
+              headers: {'Content-Type': 'application/json'},
+              body: jsonEncode({'usuario': usuario, 'senha': senha}),
+            )
+            .timeout(const Duration(seconds: 4));
+      }
 
       if (response.statusCode != 200 && response.statusCode != 201) {
         final data = jsonDecode(response.body);

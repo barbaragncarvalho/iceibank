@@ -59,6 +59,7 @@ class _CriarContaScreenState extends State<CriarContaScreen> {
 
     try {
       await ApiService.registrarUsuario(_agencia, usuario, senha);
+      await ApiService.login(_agencia, usuario, senha);
 
       final dados =
           await ApiService.criarConta(_agencia, idConta, titular, saldoInicial);
