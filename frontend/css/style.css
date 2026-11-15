@@ -180,3 +180,97 @@ button:hover {
         transform: translateY(0);
     }
 }
+
+.bully-panel {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    padding: 10px 16px;
+    margin-bottom: 14px;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.bully-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bully-row+.bully-row {
+    margin-top: 8px;
+}
+
+.bully-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.bully-lider-badge {
+    background: #e8f5e9;
+    color: #1b5e20;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+}
+
+.bully-lider-badge.offline {
+    background: #fdedec;
+    color: #842029;
+}
+
+.bully-nodes {
+    display: flex;
+    gap: 6px;
+}
+
+.bully-node-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.bully-node-pill.online {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+.bully-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #dc3545;
+}
+
+.bully-node-pill.online .bully-dot {
+    background: #198754;
+}
+
+.btn-forcar-eleicao {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 4px 12px !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    border-radius: 50px !important;
+    background: #ffffff !important;
+    color: #0a2e65 !important;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-forcar-eleicao:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
