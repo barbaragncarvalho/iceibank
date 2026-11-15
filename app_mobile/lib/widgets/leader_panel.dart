@@ -15,10 +15,12 @@ class LeaderPanel extends StatefulWidget {
 class _LeaderPanelState extends State<LeaderPanel> {
   String liderTexto = 'Consultando...';
   bool online = true;
+  List<bool> agenciasOnline = [false, false, false];
   List<OperacaoPendente> pendentes = [];
   Timer? _timer;
   StreamSubscription? _connSub;
   bool _sincronizando = false;
+  bool _forcandoEleicao = false;
 
   @override
   void initState() {
@@ -44,15 +46,18 @@ class _LeaderPanelState extends State<LeaderPanel> {
 
   Future<void> _atualizarPainel() async {
     final fila = await ApiService.listarOperacoesPendentes();
-    final resultado = await ApiService.obterLider();
+    final resultado = await ApiService.obterStatusCluster();
     if (!mounted) return;
 
     final estaOnline = resultado['online'] == true;
     final idLider = resultado['liderAtual'];
+    final listaNos =
+        List<bool>.from(resultado['agenciasOnline'] ?? [false, false, false]);
 
     setState(() {
       pendentes = fila;
       online = estaOnline;
+      agenciasOnline = listaNos;
       if (estaOnline && idLider != null) {
         liderTexto =
             'Agência $idLider (Porta ${ApiService.portaBase + (idLider as int)})';
@@ -65,6 +70,31 @@ class _LeaderPanelState extends State<LeaderPanel> {
 
     if (estaOnline && fila.isNotEmpty && !_sincronizando) {
       await _executarSincronizacaoAutomatica();
+    }
+  }
+
+  Future<void> _acionarForcarEleicao() async {
+    setState(() => _forcandoEleicao = true);
+    try {
+      final msg = await ApiService.forcarEleicaoManual();
+      await _atualizarPainel();
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(msg),
+          backgroundColor: const Color(0xFF0D6EFD),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString().replaceAll('Exception: ', '')),
+          backgroundColor: const Color(0xFFDC3545),
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _forcandoEleicao = false);
     }
   }
 
@@ -120,7 +150,8 @@ class _LeaderPanelState extends State<LeaderPanel> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Color(0xFF0A2E65))),
               Text('Conta ID: ${conflito.contaAtual['id']}'),
-              Text('Titular: ${conflito.contaAtual['nomeAluno']}'),
+              Text(
+                  'Titular: ${conflito.contaAtual['nomeAluno'] ?? conflito.contaAtual['titular']}'),
               Text(
                 'Saldo Real: R\$ ${((conflito.contaAtual['saldo'] as num?)?.toDouble() ?? 0.0).toStringAsFixed(2)}',
                 style: const TextStyle(
@@ -141,47 +172,120 @@ class _LeaderPanelState extends State<LeaderPanel> {
     }
   }
 
+  Widget _buildNoBadge(int id, bool ativo) {
+    return Container(
+      margin: const EdgeInsets.only(right: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: ativo ? const Color(0xFFE8F5E9) : Colors.white.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 7,
+            height: 7,
+            decoration: BoxDecoration(
+              color: ativo ? const Color(0xFF198754) : const Color(0xFFDC3545),
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 4),
+          Text(
+            'Ag. $id',
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: ativo ? const Color(0xFF1B5E20) : Colors.white70,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.14),
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(color: Colors.white.withOpacity(0.25)),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
             children: [
-              const Text(
-                'Líder Atual (Bully):',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
-                ),
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(
-                  color: online
-                      ? const Color(0xFFE8F5E9)
-                      : const Color(0xFFFDEDEC),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Text(
-                  liderTexto,
-                  style: TextStyle(
-                    color: online
-                        ? const Color(0xFF1B5E20)
-                        : const Color(0xFF842029),
-                    fontWeight: FontWeight.w700,
-                    fontSize: 12.5,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Líder Atual (Bully):',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                    ),
                   ),
-                ),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: online
+                          ? const Color(0xFFE8F5E9)
+                          : const Color(0xFFFDEDEC),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Text(
+                      liderTexto,
+                      style: TextStyle(
+                        color: online
+                            ? const Color(0xFF1B5E20)
+                            : const Color(0xFF842029),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      _buildNoBadge(0, agenciasOnline[0]),
+                      _buildNoBadge(1, agenciasOnline[1]),
+                      _buildNoBadge(2, agenciasOnline[2]),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 26,
+                    child: ElevatedButton(
+                      onPressed:
+                          _forcandoEleicao ? null : _acionarForcarEleicao,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: const Color(0xFF0A2E65),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        textStyle: const TextStyle(
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      child: Text(
+                        _forcandoEleicao ? 'Eleição...' : '⚡ Forçar Eleição',
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

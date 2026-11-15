@@ -146,6 +146,77 @@ class ApiService {
     return {'idAgenciaConsultada': -1, 'liderAtual': null, 'online': false};
   }
 
+  static Future<JsonMap> obterStatusCluster() async {
+    for (int base in [portaBase, if (portaBase == 4047) 4000 else 4047]) {
+      List<bool> statusAgencias = [false, false, false];
+      int? liderDetectado;
+      bool algumaOnline = false;
+
+      for (int id = 0; id < 3; id++) {
+        try {
+          final response = await http
+              .get(Uri.parse('$host:${base + id}/bully/lider'))
+              .timeout(const Duration(milliseconds: 900));
+
+          if (response.statusCode == 200) {
+            portaBase = base;
+            statusAgencias[id] = true;
+            algumaOnline = true;
+            final body = jsonDecode(response.body);
+            if (body['liderAtual'] != null) {
+              liderDetectado = body['liderAtual'];
+            }
+          }
+        } catch (_) {}
+      }
+
+      if (algumaOnline) {
+        return {
+          'online': true,
+          'liderAtual': liderDetectado,
+          'agenciasOnline': statusAgencias,
+        };
+      }
+    }
+    return {
+      'online': false,
+      'liderAtual': null,
+      'agenciasOnline': [false, false, false],
+    };
+  }
+
+  static Future<String> forcarEleicaoManual() async {
+    for (int id = 0; id < 3; id++) {
+      try {
+        final res = await http.post(
+          Uri.parse('${urlAgencia(id)}/bully/forcar-eleicao'),
+          headers: {'Content-Type': 'application/json'},
+        ).timeout(const Duration(seconds: 2));
+
+        if (res.statusCode == 200) {
+          final data = jsonDecode(res.body);
+          return 'Eleição manual disparada na Agência $id! Líder atual: Agência ${data['liderAtual'] ?? '?'}';
+        }
+
+        final resFallback = await http
+            .post(
+              Uri.parse('${urlAgencia(id)}/bully/eleicao'),
+              headers: {'Content-Type': 'application/json'},
+              body: jsonEncode({
+                'origemId': id,
+                'vetor': [0, 0, 0]
+              }),
+            )
+            .timeout(const Duration(seconds: 2));
+
+        if (resFallback.statusCode == 200) {
+          return 'Eleição manual disparada com sucesso via Agência $id!';
+        }
+      } catch (_) {}
+    }
+    throw Exception('Nenhuma agência está online para iniciar a eleição.');
+  }
+
   static Future<JsonMap> criarConta(
       int idAgencia, int idConta, String titular, double saldoInicial) async {
     final response = await http
