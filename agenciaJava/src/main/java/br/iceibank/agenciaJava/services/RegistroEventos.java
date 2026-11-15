@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegistroEventos {
@@ -20,8 +21,7 @@ public class RegistroEventos {
         this.caminhoArquivo = pastaDados.resolve("eventos-" + nomeAgencia + ".jsonl");
     }
 
-    public Map<String, Object> registrar(String tipo, int[] timestampVetorial, Map<String, Object> detalhes)
-            throws IOException {
+    public Map<String, Object> registrar(String tipo, int[] timestampVetorial, Map<String, Object> detalhes) {
         Map<String, Object> evento = new LinkedHashMap<>();
         evento.put("agencia", nomeAgencia);
         evento.put("tipo", tipo);
@@ -32,6 +32,8 @@ public class RegistroEventos {
         String linha = paraJson(evento);
         try (FileWriter writer = new FileWriter(caminhoArquivo.toFile(), true)) {
             writer.write(linha + System.lineSeparator());
+        } catch (IOException e) {
+            System.err.println("Erro ao gravar log de evento: " + e.getMessage());
         }
         System.out.println("[Vetorial " + java.util.Arrays.toString(timestampVetorial) + "] " + tipo + " " + detalhes);
         return evento;
@@ -56,7 +58,7 @@ public class RegistroEventos {
             sb.append("}");
             return sb.toString();
         }
-        if (valor instanceof Number) {
+        if (valor instanceof Number || valor instanceof Boolean) {
             return valor.toString();
         }
         if (valor instanceof int[]) {
@@ -66,6 +68,17 @@ public class RegistroEventos {
                 if (i > 0)
                     sb.append(",");
                 sb.append(vetor[i]);
+            }
+            sb.append("]");
+            return sb.toString();
+        }
+        if (valor instanceof List<?>) {
+            List<?> lista = (List<?>) valor;
+            StringBuilder sb = new StringBuilder("[");
+            for (int i = 0; i < lista.size(); i++) {
+                if (i > 0)
+                    sb.append(",");
+                sb.append(paraJson(lista.get(i)));
             }
             sb.append("]");
             return sb.toString();
